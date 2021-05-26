@@ -14,6 +14,11 @@ const SearchAdmin = ({
         searchedText, 
         base_url, 
       }) => {
+
+    
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   
  
   return(

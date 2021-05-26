@@ -28,6 +28,7 @@ const ParcoursCoaching = ({
   searchedText,
 }) => {
 
+
     // const[themeScore,setThemeScore] = useState(0);
   console.log(searchedText);
 
@@ -42,6 +43,10 @@ const ParcoursCoaching = ({
   useEffect(()=> {
     computeGeneralScore();
   })
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
 
   return(
