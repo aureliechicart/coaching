@@ -21,6 +21,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 import Menu from 'src/components/Menu';
 import Header from 'src/components/Header'
+import Footer from 'src/components/Footer'
 import Accueil from 'src/pages/Accueil';
 import ParcoursCoaching from 'src/pages/ParcoursCoaching';
 import ThemePage from 'src/pages/ThemePage';
@@ -229,6 +230,7 @@ const App = ({base_url}) => {
           />
           <Header titre={titre.studentAccueil.description} />
           <Accueil />
+          <Footer />
         </Route>
 
         <Route path='/accueiladmin'>
@@ -253,6 +255,7 @@ const App = ({base_url}) => {
           />
           <Header titre={titre.adminAccueil.description} />
           <AccueilAdmin heros={heros}/>
+          <Footer />
         </Route>
 
         <Route path='/parcours-coaching'>
@@ -289,6 +292,7 @@ const App = ({base_url}) => {
             searchedText={searchedText}
             base_url={base_url}
           />  
+          <Footer />
         </Route> 
 
         <Route path= {`/theme/:idTheme`}>
@@ -327,6 +331,7 @@ const App = ({base_url}) => {
             userMissionsCompleted={userMissionsCompleted} 
             userId={userId}
             activeRole={activeRole} /> 
+            <Footer />
         </Route>
 
         <Route path= {`/ajouter-administrateur`}>
@@ -353,6 +358,7 @@ const App = ({base_url}) => {
           <AddAdmin
             base_url={base_url}
           />
+          <Footer />
         </Route>
 
         <Route path= {`/gestion-themes`}>
@@ -382,6 +388,7 @@ const App = ({base_url}) => {
             setRefresh={setRefresh}
             base_url={base_url}
           />
+          <Footer />
         </Route>
 
         <Route path= {`/search-profil`}>
@@ -406,6 +413,7 @@ const App = ({base_url}) => {
           />
           <Header titre={titre.gestionThemes.description} />
           <SearchAdmin />
+          <Footer />
         </Route>
 
         <Route path= {`/results`} exact>
@@ -435,7 +443,7 @@ const App = ({base_url}) => {
             searchedText={searchedText}
             base_url={base_url}
           />
-
+          <Footer />
         </Route>
 
         <Route path= {`/results/:studentId/score`}>
@@ -468,6 +476,7 @@ const App = ({base_url}) => {
             studentScore={studentScore}
             setStudentScore={setStudentScore}
           />
+          <Footer />
         </Route>
 
 
