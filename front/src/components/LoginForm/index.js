@@ -29,7 +29,7 @@ const LoginForm = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
     const headers = {
       'Content-Type': 'application/json'
     };
-      axios.post(postUrl, data, { withCredentials: true }, {headers}).then(res => {
+      axios.post(postUrl, data, {headers}).then(res => {
         console.log(data)
         console.log("RESPONSE : ",res.data )
 
@@ -58,10 +58,11 @@ const LoginForm = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
   return(
     <Form size='large'>
        
-    <Icon className="iconlogin" size='huge' name='user' />
+    <Icon fluid className="iconlogin" size='huge' name='user circle' />
     <Form.Input
     className="inputicon"
-    fluid icon='user'
+    // fluid 
+    icon='user'
     iconPosition='left'
     placeholder='Ton e-mail'
     value={email}
@@ -70,7 +71,7 @@ const LoginForm = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
 
     <Form.Input
         className="inputicon"
-        fluid
+        // fluid
         icon='lock'
         iconPosition='left'
         placeholder='Mot de passe (caput draconis)'
@@ -80,6 +81,7 @@ const LoginForm = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
     />
 
     <Message
+    className='message'
     hidden={hidden}
     negative={negative}
     compact
@@ -87,12 +89,12 @@ const LoginForm = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
     />
 
     <Button
-    color='green'
-    fluid
-    size='large'
+    // color='green'
+    // fluid
+    // size='large'
     onClick={handleSubmitLogin}
     >
-        Connexion
+        C'est parti !
     </Button>
   </Form>
 
