@@ -88,7 +88,7 @@ const Mission = ({
 
 
 return(
-  <Card fluid className='mission-card'>
+  <Card fluid="true" className='mission-card'>
 
   <Card.Content className='mission-card-header'>
     <div className="checkbox-container">

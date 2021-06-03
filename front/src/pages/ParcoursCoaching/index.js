@@ -22,26 +22,27 @@ const ParcoursCoaching = ({
   userInteraction, 
   generalScore, 
   setGeneralScore, 
-  userMissionsCompleted, 
-  allMissions, 
   base_url,
-  searchedText,
 }) => {
 
-    // const[themeScore,setThemeScore] = useState(0);
-  console.log(searchedText);
 
   const computeGeneralScore = () => {
-    console.log('COMPUTE GENERAL SCORE');
-    const result = Math.round((userMissionsCompleted.length/allMissions.length)*100);
-    console.log('userMissionsCompleted', userMissionsCompleted);
-    setGeneralScore(result);
-    // return result;
+    console.log('LOAD General theme score');
+
+    axios.get(`${base_url}/v1/api/students/${userId}/score`)
+      .then((response)=> {
+        setGeneralScore(response.data.global_ratio);
+        // return(response.data)
+      }).catch((err => {
+        console.log(err)
+      }))
+
   };
 
   useEffect(()=> {
     computeGeneralScore();
-  })
+  },[userInteraction]);
+
 
 
   return(

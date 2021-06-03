@@ -10,7 +10,6 @@ const ThemePage = ({
   base_url,
   missionByTheme,
   setMissionByTheme,
-  missionByThemeUser,
   setMissionByThemeUser,
   theme,
   setTheme,
@@ -18,14 +17,15 @@ const ThemePage = ({
   setUserInteraction,
   allMissions,
   userMissionsCompleted,
-  userId,
-  activeRole,
+  userId
 }) => {
   
   const[themeScore,setThemeScore] = useState(0);
 
   const { idTheme } = useParams();
   
+
+  //il faut appeller les missions pour un theme demandé.
     
   const filterMissionsByTheme = (missions) => {
     console.log('FILTER MISSIONS BY THEME');
@@ -67,9 +67,13 @@ const ThemePage = ({
 
   useEffect(()=> {
     console.log('USE EFFECT THEME PAGE');
-    getSelectedTheme();
     setMissions();
   },[userInteraction]);
+
+  useEffect(()=> {
+    getSelectedTheme();
+  },[]);
+
 
   return (
     <div className="missions">
@@ -79,11 +83,7 @@ const ThemePage = ({
         userInteraction={userInteraction}
         setThemeScore={setThemeScore}
         themeScore={themeScore}
-        // computeThemeScore={computeThemeScore}
-        missionByThemeUser={missionByThemeUser}
-        missionByTheme={missionByTheme}
         userId={userId}
-        activeRole={activeRole}
         base_url={base_url}
       />
 
@@ -106,7 +106,6 @@ const ThemePage = ({
         ))}
       </Card.Group>
      
-      
     </div>
   )
 }
