@@ -142,18 +142,17 @@ const MenuHeader = ({
   return (
     <div className="navbar">
       <Menu secondary>
-        {navlinks.map((navlink) => (
-
+      {navlinks.map((navlink) => (
           <Menu.Item
             onClick={handleItemClick}
             key={navlink.label}
-            as={Link}
-            to={navlink.route}
+            as= { Link }
+            to={navlink.route} 
             className='header-menu-item'
             name={navlink.label}
             active={activeItem === navlink.label}
-          />
-        ))}
+            />
+      ))}
         <Menu.Menu position='right'>
           <Menu.Item>
             <Input 
