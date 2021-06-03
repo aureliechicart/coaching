@@ -6,11 +6,8 @@ import axios from 'axios'
 function UpdateModalTheme({
     currentThemeTitle,
     currentThemeDescription,
-    setCurrentThemeTitle,
-    setCurrentThemeDescription,
     id,
     setRefresh,
-    refresh,
     base_url
   }) {
   const [title, setTitleTheme] = useState(currentThemeTitle);

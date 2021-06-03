@@ -124,15 +124,8 @@ const App = ({base_url}) => {
       })
       .then((response) => {
         setUserMissionsCompleted(response.data)
-      // })
-      // .then(()=>{
-      //   console.log('userMissionsCompleted',userMissionsCompleted);
-      //   console.log('userMissionsCompleted.length',userMissionsCompleted.length);
-      //   console.log('allMissions.length',allMissions.length);
-      //   // console.log('generalScore',generalScore);
       }).catch((err => {
         console.log(err)
-        console.log("erreur loadUserMissions dans App")
       }))
     } 
   };
@@ -281,14 +274,10 @@ const App = ({base_url}) => {
           <ParcoursCoaching 
             themes={searchedThemes} 
             generalScore={generalScore}
-            userMissionsCompleted={userMissionsCompleted}
-            allMissions={allMissions}
-            // computeGeneralScore={computeGeneralScore}
             setGeneralScore={setGeneralScore}  
             userInteraction={userInteraction}
             base_url={base_url}
             userId={userId}
-            searchedText={searchedText}
             base_url={base_url}
           />  
           <Footer />
@@ -320,7 +309,6 @@ const App = ({base_url}) => {
             base_url={base_url}
             missionByTheme={missionByTheme}
             setMissionByTheme={setMissionByTheme}
-            missionByThemeUser={missionByThemeUser}
             setMissionByThemeUser={setMissionByThemeUser}
             theme={theme}
             setTheme={setTheme}
@@ -329,7 +317,7 @@ const App = ({base_url}) => {
             allMissions={allMissions} 
             userMissionsCompleted={userMissionsCompleted} 
             userId={userId}
-            activeRole={activeRole} /> 
+            /> 
             <Footer />
         </Route>
 

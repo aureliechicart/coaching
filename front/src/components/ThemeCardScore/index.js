@@ -23,7 +23,7 @@ const ThemeCardScore = ({
 
 
   const loadThemeScore = () => {
-    console.log('COMPUTE THEME SCORE');
+    console.log('LOAD THEME SCORE');
     axios.get(`${base_url}/v1/api/students/${student.oap_id}/themes/${id}/score`)
       .then((response)=> {
         console.log('SCORE', response.data);
@@ -56,20 +56,25 @@ const ThemeCardScore = ({
 
   };
 
-  useEffect(() => {
-    if (student != undefined) {
-    loadThemeScore();
-    getSelectedStudent();}
 
-  },[missions])
+  const getAllInformation = () => {
+    getSelectedStudent();
+    loadThemeScore();
+  };
 
   useEffect(() => {
     loadMissions();
   },[student])
 
+  useEffect(() => {
+getAllInformation();
+  },[missions])
+
+
+
 
 return(
-  <Card fluid className='score-theme-card'>
+  <Card fluid="true" className='score-theme-card'>
 
   <Card.Content className='score-theme-card-header' >
       <h2 className="theme-title">{title}</h2>
