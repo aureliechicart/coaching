@@ -219,3 +219,6 @@ AND "user_id" =1;
 ----
          
 
+SELECT * 
+        FROM interact
+        WHERE interact.mission_id = 100 AND interact.user_id = 2;
