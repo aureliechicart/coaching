@@ -262,12 +262,13 @@ router.post('/admin/add', adminController.addAdmin);
 
 
 /**
- * Returns all the students with their detailed info and cohorts 
- * @route GET /admin/students
+ * 
+ * Returns return a result against the searched words and internal API students
+ * @route GET /admin/students/:wordSearched
  * @group Admin
- * @returns {Array<Student>} 200 - An array of students with detailed info on each student and their cohorts 
+ * @returns {Array<Student>} 200 - an array showing the results of the research carried out
  */
-router.get('/admin/students', adminController.getAllStudentsWithPromo);
+router.get('/admin/students/:wordSearched', adminController.getAllWordQuery);
 //
 //
 // --------------------------------------END------------------------------------------

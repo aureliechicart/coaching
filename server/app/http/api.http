@@ -1,4 +1,10 @@
-# Récupérer tous les étudiants avec leurs infos détaillées et leurs promos
-GET http://localhost:3000/v1/api/admin/students
+# 200 - Récupérer tous les mots de la query avec un étudiant existants
+GET http://localhost:3000/v1/api/admin/students/aurelie
+Content-Type: application/json
+###
+
+
+# 202 - Récupérer tous les mots de la query avec un mot inexistant
+GET http://localhost:3000/v1/api/admin/students/nothing
 Content-Type: application/json
 ###

@@ -91,97 +91,56 @@ const adminController = {
     /**
     * Controls endpoint GET /v1/api/admin/students
     */
-    getAllStudentsWithPromo: async (_, res) => {
-
-
-        try {
-            const promoIds = [];
-            let completelyReceiveAllPromos;
-
-            // we call the cockpit API to retrieve each promo id 
-            // we choose the method and we put the API key in the header
-            await fetch(`${EXTERNAL_API_BASE_URL}/api/cohorts`, {
-                method: 'GET',
-                headers: {
-                    'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
-                }
-            }).then(res => res.json())
-                .then(json => completelyReceiveAllPromos = json);
-
-            takeDetailsEachPromo = completelyReceiveAllPromos.data;
-
-            for (const properties of takeDetailsEachPromo) {
-                promoIds.push(properties.id)
+   getAllWordQuery : async (req ,res) => {
+        
+        
+    try {
+        let { wordSearched } = req.params;
+        const studentsAPI = [];
+        const studentsOAP = [];
+        let dataSearched; 
+        
+        // Retrieve cockpit data from the retrieved parameter
+        await fetch(`${EXTERNAL_API_BASE_URL}/api/user/search?q=${wordSearched}`,{
+            method: 'GET',
+            headers: {
+                'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
             }
+        }).then(res => res.json())
+        .then(json => dataSearched = json);
 
-            // We loop on this array to do the next step
-            // we call the external route to get all the students of each promo based on the promo id 
-
-            for (const idOnlyOnePromo of promoIds) {
-                const users = [];
-                let onePromo;
-                await fetch(`${EXTERNAL_API_BASE_URL}/api/cohort/${idOnlyOnePromo}`, {
-                    method: 'GET',
-                    headers: {
-                        'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
-                    }
-                }).then(res => res.json())
-                    .then(json => onePromo = json);
-
-                for (const student of onePromo.data.users) {
-                    // if the user is type 'regular' (if they are a student)
-                    if (student.type === 'regular') {
-
-                        let detailedInfo;
-                        await fetch(`${EXTERNAL_API_BASE_URL}/api/user/${student.id}`, {
-                            method: 'GET',
-                            headers: {
-                                'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
-                            }
-                        }).then(res => res.json())
-                            .then(json => detailedInfo = json);
-
-                        // we add the detailed info to our student object
-                        student.detailedInfo = detailedInfo.data;
-
-
-                        // we lookup the cohorts of the student 
-                        let cohortsInfo;
-                        await fetch(`${EXTERNAL_API_BASE_URL}/api/user/${student.id}/cohorts`, {
-                            method: 'GET',
-                            headers: {
-                                'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
-                            }
-                        }).then(res => res.json())
-                            .then(json => cohortsInfo = json);
-
-                        // we add the cohorts data to our student object
-                        student.cohortsInfo = cohortsInfo.data;
-
-                        // we lookup the user in our internal database
-                        const theInternalUser = await User.checkByApiId(student.id);
-
-                        if (!theInternalUser) {
-                            // we add the internal user id to our student object 
-                            student.oap_id = null;
-                        } else {
-                            student.oap_id = theInternalUser.id;
-                        };
-
-                        // we push the enriched student object in the users array
-                        users.push(student);
-                    };
-
-                };
-                // we return the users array as json to the client
-                res.status(200).json(users);
-
-            };
-
-
-        } catch (err) {
-            res.status(500).json(err.message);
+        const usersApi = dataSearched.data;
+        // Retrieve each research student in a table by checking if is_student = true
+        for(const userAPI of usersApi){
+            if(userAPI.is_student){
+                studentsAPI.push(userAPI);
+            }; 
         };
+        
+        // We are looping each student and check if this student is OAP or not
+        for(const studentAPI of studentsAPI){
+            
+            // If this is the case, we add it to an array with its information and its OAP_id
+            const student = await User.checkByApiId(studentAPI.id);
+            if(student){
+                studentAPI.oap_id = student.id;
+                studentsOAP.push(studentAPI);
+            };
+        };
+
+        if(studentsOAP.length){
+            // Given at the front THAT students who are connected to the service and therefore concerned by research.
+            res.status(200).json(studentsOAP);
+        }
+        else{
+            //the word is well received but it does not exist
+            res.status(202).json(`Aucun élève trouvé selon la recherche : ${wordSearched}` );
+        };
+        
+    } catch(err){
+        res.status(500).json(err.message);
+    };
+    
     },
 
 
