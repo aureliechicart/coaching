@@ -11,15 +11,19 @@ const FormAdmin = ({base_url}) => {
   const [result, setResult] = useState('');
   const postUrl = `${base_url}/v1/api/admin/add`;
 
-const showMessage = () => {
-if(positive){
+const showMessage = (status) => {
+if(status == 200){
   setHidden(false)
   setVisible(true);
-  console.log("j'affiche un message ok!")
-}else{
+  setResult("Vous avez ajouté un nouvel administrateur ! Bienvenue à lui!")
+}else if(status == 401) {
   setHidden(false)
   setVisible(true);
-  console.log("j'affiche un message pas cools!")
+  setResult("Un étudiant admin ?! Mais vous êtes fous ??? Oh OUI ! ")
+}else if(status == 404) {
+  setHidden(false)
+  setVisible(true);
+  setResult("Mais t'es où, pas là ! Mais t'es pas là, mais t'es... Bref, tu connais la chanson, essaie de verifier l'orthographe du mail peut-être on ne sait jamais !")
 }
 }
 
@@ -33,15 +37,16 @@ if(positive){
       'Content-Type': 'application/json'
     };
       axios.post(postUrl, data, {headers}).then(res => {
-        setResult("Vous avez ajouté un nouvel administrateur ! Bienvenue à lui!")
+        
         setPositive(true);
-        showMessage()
+        showMessage(res.status)
         setEmailAdmin('')
       }).catch(err => {
         setPositive(false);
         setNegative(true);
-        setResult(err.response.data)
-        showMessage()
+        // setResult(err.response.data)
+        console.log(err.response.status)
+        showMessage(err.response.status)
       }).finally(
         console.log("post url", postUrl),
         console.log("je suis dans le finally"),

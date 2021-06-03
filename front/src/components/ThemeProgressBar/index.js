@@ -13,10 +13,8 @@ const ThemeProgressBar = ({
   themeScore,
   setThemeScore,
   userInteraction,
-  missionByTheme,
-  missionByThemeUser,
   userId,
-  activeRole }) => {
+}) => {
   // const [percent, setPercent] = useState(80);
 
   // const computeThemeScore = () => {
@@ -41,7 +39,7 @@ const ThemeProgressBar = ({
   
   useEffect(() => {
     computeThemeScore();
-  },[missionByThemeUser,userInteraction])
+  },[id, userInteraction])
 
     return (
       <div className='theme-presentation'>
