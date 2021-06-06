@@ -1,5 +1,5 @@
 // == Import npm
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 // bibliothèque pour faciliter les appels AJAX (en utilisant des Promise)
 import axios from 'axios';
 
@@ -70,8 +70,6 @@ const ParcoursCoaching = ({
                 <ThemeInParcoursCoachingPage
                   name={theme.id}
                   {...theme}
-                  // themeScore={themeScore}
-                  // setThemeScore={setThemeScore}
                   base_url={base_url}
                   userInteraction={userInteraction}
                   userId={userId}

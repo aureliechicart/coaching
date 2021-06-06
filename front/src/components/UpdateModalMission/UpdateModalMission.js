@@ -7,7 +7,6 @@ function UpdateModalMission({
   currentAstuce,
   idMission,
   setRefresh,
-  refresh,
   base_url
   }) {
   const [title, setTitleMission] = useState(currentTitle);
@@ -29,8 +28,8 @@ function UpdateModalMission({
       axios.post(postUrl, data, {headers}).then(res => {
         console.log(res.data);
         setData(res.data);
-        setTitleMission(currentTitle);
-        setAdviceMission(currentAstuce);
+        setTitleMission(title);
+        setAdviceMission(advice);
         setRefresh(true);
       }).catch(err => {
         console.log(err)
