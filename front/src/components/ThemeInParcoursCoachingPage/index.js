@@ -12,9 +12,7 @@ import { Card, Progress } from 'semantic-ui-react'
 const ThemeInParcoursCoachingPage = ({
   id,
   title,
-  base_url,
-  // themeScore, 
-  // setThemeScore, 
+  base_url, 
   userInteraction,
   userId,
 }) => {

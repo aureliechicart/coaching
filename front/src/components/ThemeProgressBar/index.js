@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Progress, Header } from 'semantic-ui-react'
 import '../../styles/ThemeProgressBar.css';
-import axios, { post } from 'axios';
+import axios from 'axios';
 
 
 
@@ -15,15 +15,7 @@ const ThemeProgressBar = ({
   userInteraction,
   userId,
 }) => {
-  // const [percent, setPercent] = useState(80);
 
-  // const computeThemeScore = () => {
-  //   console.log('COMPUTE THEME SCORE');
-  //   console.log('missionByThemeUser.length');
-  //   console.log('missionByUser.length');
-  //   const result = Math.round((missionByThemeUser.length/missionByTheme.length)*100);
-  //   setThemeScore(result);
-  // }
 
   const computeThemeScore = () => {
     console.log('COMPUTE THEME SCORE');
