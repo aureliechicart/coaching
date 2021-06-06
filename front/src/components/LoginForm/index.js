@@ -61,7 +61,7 @@ const LoginForm = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
   return(
     <Form size='large'>
        
-    <Icon  className="iconlogin" size='huge' name='user circle' />
+    {/* <Icon  className="iconlogin" size='huge' name='user circle' /> */}
     <Form.Input
     className="inputicon"
     // fluid 
