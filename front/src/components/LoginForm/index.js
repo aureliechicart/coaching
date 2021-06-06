@@ -37,13 +37,16 @@ const LoginForm = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
         setPassword('')
         setUserId(res.data.oap_id)
         setActiveItem('accueil')
-        
+        localStorage.setItem('user_id',res.data.oap_id)
+
         if(res.data.oap_admin_status){
           setActiveRole('admin')
+          localStorage.setItem('user_role', 'admin')
           history.push('/accueiladmin')
 
         }else if(res.data.data.is_student){
           setActiveRole('student')
+          localStorage.setItem('user_role', 'student')
           history.push('/accueil')
         }
 
@@ -58,7 +61,7 @@ const LoginForm = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
   return(
     <Form size='large'>
        
-    <Icon fluid className="iconlogin" size='huge' name='user circle' />
+    <Icon  className="iconlogin" size='huge' name='user circle' />
     <Form.Input
     className="inputicon"
     // fluid 
