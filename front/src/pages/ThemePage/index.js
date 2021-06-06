@@ -1,79 +1,77 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom'
-import {  Divider, Header, Card, Progress } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 // import 'src/styles/ThemePage.css';
+import axios from 'axios';
 import Mission from 'src/components/Mission';
 import ThemeProgressBar from '../../components/ThemeProgressBar';
 
 const ThemePage = ({
-  themes,
   base_url,
   missionByTheme,
   setMissionByTheme,
-  missionByThemeUser,
   setMissionByThemeUser,
   theme,
   setTheme,
   userInteraction,
   setUserInteraction,
-  allMissions,
-  userMissionsCompleted,
-  userId,
-  activeRole,
+  userId
 }) => {
   
   const[themeScore,setThemeScore] = useState(0);
 
   const { idTheme } = useParams();
   
-    
-  const filterMissionsByTheme = (missions) => {
-    console.log('FILTER MISSIONS BY THEME');
-    console.log("filtermissionbytheme MISSION :", missions);
-    const  result = missions.filter(mission => mission.theme_id == idTheme);
-    return result;
+
+  //il faut appeller les missions pour un theme demandé.
+  // double axios prévu, 1er récupérer toutes les missions pa theme
+
+
+  const loadMissionByThemeWithInteract = () => {
+
+    axios.get(`${base_url}/v1/api/themes/${idTheme}/missions`)
+      .then((response)=> {
+        console.log("SETMISSIONBYTHEME :", response.data )
+        setMissionByTheme(response.data);
+      }).catch((err => {
+        console.log(err)
+      })).finally(() => {
+        axios.get(`${base_url}/v1/api/themes/${idTheme}/users/${userId}`)
+        .then((response)=> {
+          console.log("SetMissionByThemeUser :", response.data )
+          setMissionByThemeUser(response.data)
+        }).catch((err => {
+          console.log(err)
+        
+      }
+      ))})
+
   }
 
-
-  const setMissions = ()  => {
-    console.log('SETMISSIONS');
-    console.log("userMissionsCompleted : ",userMissionsCompleted)
-    const missionsCompletedByTheme = filterMissionsByTheme(userMissionsCompleted);
-
-    setMissionByThemeUser(missionsCompletedByTheme);
-
-    console.log('missionCompletedByTheme=',missionsCompletedByTheme.length); 
-
-    const missionsFilteredByTheme = filterMissionsByTheme(allMissions);
-
-    setMissionByTheme(missionsFilteredByTheme);
-
-    console.log('missionByTheme=',missionsFilteredByTheme.length);
-
-  }
-
-  
 
   const getSelectedTheme = () => { 
-    console.log('GET SELECTED THEME'); 
-    console.log(themes);
-    console.log(idTheme);
-    const theme = themes.find((theme) => theme.id == idTheme);
-    setTheme(theme);
-    console.log('theme =',theme.id);   
+    axios.get(`${base_url}/v1/api/themes/${idTheme}`)
+    .then((response)=> {
+      console.log("SETMISSIONBYTHEME :", response.data )
+      setTheme(response.data);
+    }).catch((err => {
+      console.log(err)
+    }))
+  
   }
 
 
 
   useEffect(()=> {
     console.log('USE EFFECT THEME PAGE');
-    getSelectedTheme();
-    setMissions();
+    loadMissionByThemeWithInteract();
   },[userInteraction]);
 
   useEffect(() => {
+    getSelectedTheme();
     window.scrollTo(0, 0)
   }, [])
+
 
   return (
     <div className="missions">
@@ -83,11 +81,7 @@ const ThemePage = ({
         userInteraction={userInteraction}
         setThemeScore={setThemeScore}
         themeScore={themeScore}
-        // computeThemeScore={computeThemeScore}
-        missionByThemeUser={missionByThemeUser}
-        missionByTheme={missionByTheme}
         userId={userId}
-        activeRole={activeRole}
         base_url={base_url}
       />
 
@@ -110,7 +104,6 @@ const ThemePage = ({
         ))}
       </Card.Group>
      
-      
     </div>
   )
 }

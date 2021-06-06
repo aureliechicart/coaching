@@ -6,11 +6,10 @@ import axios from 'axios'
 function UpdateModalTheme({
     currentThemeTitle,
     currentThemeDescription,
-    setCurrentThemeTitle,
     setCurrentThemeDescription,
+    setCurrentThemeTitle,
     id,
     setRefresh,
-    refresh,
     base_url
   }) {
   const [title, setTitleTheme] = useState(currentThemeTitle);
@@ -30,17 +29,16 @@ function UpdateModalTheme({
       'Content-Type': 'application/json'
     };
       axios.post(postUrl, data, {headers}).then(res => {
-        console.log(postUrl)
-        setTitleTheme(currentThemeTitle);
-        setDescriptionTheme(currentThemeDescription);
-        setRefresh(true);
+        console.log(res.data)
+        setCurrentThemeDescription(description),
+        setCurrentThemeTitle(title)
+        setRefresh(true)
       }).catch(err => {
         console.log(err)
       }).finally(
         console.log("je suis dans le finally"),
         setOpen(false),
-        setRefresh(false)
-
+        setRefresh(false),
       )
   }
   

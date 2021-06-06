@@ -128,7 +128,7 @@ router.get('/themes/:id(\\d+)/missions', missionController.getAllByThemeId);
  * @param {string} advice- the description
  * @returns {Object} 201 - Instance of the Mission class
  */
-router.post('/admin/themes/:theme_id(\\d+)/missions', validateBody(missionSchema.newMission), missionController.addMission);
+router.post('/admin/themes/:themeId(\\d+)/missions', validateBody(missionSchema.newMission), missionController.addMission);
 
 /**
  * Edits a specific mission
@@ -201,6 +201,16 @@ router.get('/missions/users/:userId(\\d+)', interactController.getAllByUserId);
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
 router.get('/missions/:missionId(\\d+)/users/:userId(\\d+)', interactController.getOneByMissionAndUser);
+
+/**
+ * Returns the checkbox values for a theme id and a user id
+ * @route GET /themes/{themeId}/users/{userId}
+ * @group Interactions
+ * @param {number} themeId.path.required - the theme id
+ * @param {number} userId.path.required - the user id
+ * @returns {Array<Interact>} 200 - Instances of the Interact class
+ */
+router.get('/themes/:themeId(\\d+)/users/:userId(\\d+)', interactController.getAllByUserAndTheme);
 
 /**
  * Adds a record in database for a mission id and a user id

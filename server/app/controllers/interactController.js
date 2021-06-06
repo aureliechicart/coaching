@@ -49,7 +49,39 @@ const interactController = {
             // There is no checkbox value stored in the database for this user id and this mission id
             // In the model, there is an error with a custom message
             res.status(404).json(err.message);
-        }
+        };
+    },
+
+
+    /**
+  * Controls endpoint GET /api/themes/:themeId/users/:userId
+  */
+    getAllByUserAndTheme: async (req, res) => {
+        try {
+            // We get the ids in the parameters of the request
+            const { userId, themeId } = req.params;
+
+            //find all interactions of the userId
+            const userInteracts = await Interact.findAll(userId);
+            //get all missions of one theme
+            const missions = await Mission.findByTheme(themeId);
+
+            // we filter the missions to keep only the missions that are relevant to the theme
+            const userInteractsByTheme = userInteracts.filter(userInteract => {
+                for (const mission of missions) {
+                    if (userInteract.mission_id === mission.id) {
+                        return userInteract;
+                    };
+                }
+            });
+
+            // we return the resulting array
+            res.status(200).json(userInteractsByTheme);
+        } catch (err) {
+            // There are no checkbox values stored in the database for this user id and theme id
+            // In the model, there is an error with a custom message
+            res.status(404).json(err.message);
+        };
     },
 
 

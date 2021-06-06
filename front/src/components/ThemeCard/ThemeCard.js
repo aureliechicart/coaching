@@ -24,9 +24,6 @@ const ThemeCard = ({
   const [currentThemeTitle,setCurrentThemeTitle] = useState(title)
   const [currentThemeDescription, setCurrentThemeDescription] = useState(description);
 
-  // const currentTitle = title;
-  // const currentDescription = description;
-  
   const handleClick = (e, titleProps) => {
     console.log('on a cliqué', titleProps);
     const { index } = titleProps;
@@ -92,7 +89,7 @@ const ThemeCard = ({
   },[refresh]);
 
 return(
-  <Card fluid className='mission-card'>
+  <Card fluid="true" className='mission-card'>
 
   <Card.Content className='mission-card-header' >
     <div className="checkbox-container">
@@ -103,8 +100,6 @@ return(
           currentThemeDescription={currentThemeDescription}
           setCurrentThemeTitle={setCurrentThemeTitle}
           setCurrentThemeDescription={setCurrentThemeDescription}
-          // currentTitle={currentTitle}
-          // currentDescription={currentDescription}
           id={id}
           setRefresh={setRefresh}
           refresh={refresh}

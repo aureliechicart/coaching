@@ -1,6 +1,4 @@
 import React,  { useState, useEffect } from 'react';
-
-import { Redirect } from 'react-router-dom';
 import '../../styles/Mission.css';
 
 //== Import from Semantic UI
@@ -88,7 +86,7 @@ const Mission = ({
 
 
 return(
-  <Card fluid className='mission-card'>
+  <Card fluid="true" className='mission-card'>
 
   <Card.Content className='mission-card-header'>
     <div className="checkbox-container">

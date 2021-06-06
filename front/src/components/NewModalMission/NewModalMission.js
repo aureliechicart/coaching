@@ -6,7 +6,6 @@ import AddMission from 'src/components/AddMission/AddMission.js';
 function NewModalMission({
   id,
   setRefresh,
-  refresh,
   base_url
 }) {
 
