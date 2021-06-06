@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useState, useEffect } from 'react';
 // bibliothèque pour faciliter les appels AJAX (en utilisant des Promise)
-import axios, { post } from 'axios';
+import axios from 'axios';
 
 // - composant Route : permet de faire un affichage conditionnel en fonction de l'URL de
 // la barre d'adresse. Comparaison "qui commence par" => si on veut une comparaison
@@ -11,7 +11,7 @@ import axios, { post } from 'axios';
 // par défaut (sans path) pour la page d'erreur 404
 // - composant Redirect : redirige une URL vers une autre (par exemple quand une
 // page a été déplacée)
-import { Route, Switch, useParams, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 
 // require('dotenv').config();
 
@@ -51,7 +51,6 @@ const App = ({base_url}) => {
   // GENERAL POUR LINSTANT
   const [activeRole, setActiveRole] = useState('');
   const [userId, setUserId] = useState(0);
-  const [user, setUser] = useState(null);
 
   
   // PARCOURS COACHING
@@ -67,7 +66,7 @@ const App = ({base_url}) => {
   const [theme, setTheme] = useState({});
   
   const [allMissions, setAllMissions] = useState([]);
-  const [userMissionsCompleted, setUserMissionsCompleted] = useState([]);
+  //const [userMissionsCompleted, setUserMissionsCompleted] = useState([]);
   const [userInteraction, setUserInteraction] = useState(0);
 
   // SEARCH BAR
@@ -278,7 +277,6 @@ const App = ({base_url}) => {
             userInteraction={userInteraction}
             base_url={base_url}
             userId={userId}
-            base_url={base_url}
           />  
           <Footer />
         </Route> 
@@ -305,7 +303,6 @@ const App = ({base_url}) => {
           />
           <Header titre={titre.studentMissions.description} />
           <ThemePage 
-            themes={themes}
             base_url={base_url}
             missionByTheme={missionByTheme}
             setMissionByTheme={setMissionByTheme}
@@ -314,8 +311,6 @@ const App = ({base_url}) => {
             setTheme={setTheme}
             userInteraction={userInteraction}
             setUserInteraction={setUserInteraction}
-            allMissions={allMissions} 
-            userMissionsCompleted={userMissionsCompleted} 
             userId={userId}
             /> 
             <Footer />
