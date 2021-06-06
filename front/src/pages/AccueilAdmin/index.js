@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // bibliothèque pour faciliter les appels AJAX (en utilisant des Promise)
 
 // == Import
@@ -9,6 +9,11 @@ import { Card, Image } from 'semantic-ui-react'
 
 
 const AccueilAdmin = ({heros}) => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="accueilAdmin">
 

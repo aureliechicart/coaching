@@ -44,6 +44,10 @@ const ParcoursCoaching = ({
   },[userInteraction]);
 
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
 
   return(
     <div className="student-dashboard">

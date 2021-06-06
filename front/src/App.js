@@ -160,12 +160,29 @@ const App = ({base_url}) => {
   const filteredNavlinks = getMenuRoutes(activeRole);
 
   useEffect(() => {
+    const loggedInUser = localStorage.getItem('user_id')
+    const userRole = localStorage.getItem('user_role')
+    if (loggedInUser) {
+      const foundUserId = JSON.parse(loggedInUser);
+      setUserId(foundUserId);
+      setActiveRole(userRole);
+      loadThemes();
+      loadAllMissions();
+
+      // setStudentsList(students);
+      // loadUserMissions();
+    }
     console.log('on est dans le useEffect de app et on charge les thèmes et les missions');
-    loadThemes();
-    loadAllMissions();
-    // setStudentsList(students);
-    // loadUserMissions();
-  }, [refresh,activeRole]);
+
+  }, [
+    refresh,
+    activeRole
+  ]);
+
+  // useEffect(()=> {
+  //   loadThemes();
+  //   loadAllMissions();
+  // },[refresh, activeRole])
 
   useEffect(()=> {
     console.log('on est dans le useEffect de app et on charge les missions de l\'utilisateur');

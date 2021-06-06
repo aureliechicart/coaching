@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 // bibliothèque pour faciliter les appels AJAX (en utilisant des Promise)
 
 // IMPORTER LoginForm!!!!!!!!
@@ -10,7 +10,14 @@ import '../../styles/LoginPage.css';
 import { Grid } from 'semantic-ui-react'
 
 
-const LoginPage = ({setActiveRole, setUserId, base_url, setActiveItem}) => (
+const LoginPage = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
+  
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  return (
 
  <div className="login-page">
     <Grid textAlign='center'>
@@ -24,7 +31,7 @@ const LoginPage = ({setActiveRole, setUserId, base_url, setActiveItem}) => (
       </Grid.Column>
     </Grid>
  </div>
-)
+)}
   
   // == Export
   export default LoginPage;

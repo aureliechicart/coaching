@@ -67,9 +67,10 @@ const ThemePage = ({
     loadMissionByThemeWithInteract();
   },[userInteraction]);
 
-  useEffect(()=> {
+  useEffect(() => {
     getSelectedTheme();
-  },[]);
+    window.scrollTo(0, 0)
+  }, [])
 
 
   return (

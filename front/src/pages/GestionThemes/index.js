@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 // bibliothèque pour faciliter les appels AJAX (en utilisant des Promise)
 import '../../styles/GestionThemes.css';
 import ThemeCard from 'src/components/ThemeCard/ThemeCard.js';
@@ -10,6 +10,10 @@ import { Card } from 'semantic-ui-react';
 
 const GestionThemes = ({themes, setRefresh, refresh, base_url}) => {
   const [iconPlus,setIconPlus] = useState('plus square');
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className="themesGestion">
