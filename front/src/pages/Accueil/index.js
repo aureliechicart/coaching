@@ -1,7 +1,7 @@
 // == Import npm
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Header, Divider, Card, Image } from 'semantic-ui-react';
+import { Header, Divider, Card } from 'semantic-ui-react';
 import louise from '../../assets/image/Louise.PNG';
 import laurine from "../..//assets/image/Laurine-ock.png";
 
@@ -10,6 +10,10 @@ import '../../styles/Accueil.css';
 
 
 const Accueil = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   
 
   return(

@@ -1,14 +1,13 @@
 import React, {useState} from 'react'
-import { Button, Form, Modal, Icon } from 'semantic-ui-react'
+import { Button, Form, Modal } from 'semantic-ui-react'
 import axios from 'axios'
 import AddTheme from 'src/components/AddTheme/AddTheme.js';
 
   
-function NewModalTheme({setRefresh, refresh, base_url})  {
+function NewModalTheme({setRefresh, base_url})  {
   const [title, setTitleTheme] = useState('');
   const [description, setDescriptionTheme] = useState('');
   const [position, setPosition] = useState(38);
-  const [isError, setIsError] = useState(false);
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
   const handleSubmitTheme = () => {
