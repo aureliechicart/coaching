@@ -4,7 +4,7 @@ GET http://localhost:3000/v1/api/students/4/themes/7/score
 
 
 # Le score du theme 1 d'un user 5
-GET http://localhost:3000/v1/api/students/5/themes/1/score
+GET http://localhost:3000/v1/api/students/7/themes/1/score
 ###
 
 

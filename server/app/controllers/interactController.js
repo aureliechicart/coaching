@@ -37,8 +37,8 @@ const interactController = {
             const { missionId, userId } = req.params;
 
             // we check the mission id and the user id
-            const checkMissionID = await Mission.findOne(req.params.missionId);
-            const checkUserID = await User.findOne(req.params.userId);
+            await Mission.findOne(req.params.missionId);
+            await User.findOne(req.params.userId);
 
             //we show information
             const theInteract = await Interact.findOne(missionId, userId);

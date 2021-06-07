@@ -4,7 +4,7 @@ GET http://localhost:3000/v1/api/missions
 
 
 # Créer et ajouter une mission donnée dans un theme 2
-POST http://localhost:3000/v1/api/admin/themes/3/missions
+POST http://localhost:3000/v1/api/admin/themes/2/missions
 Content-Type: application/json
 
 {
