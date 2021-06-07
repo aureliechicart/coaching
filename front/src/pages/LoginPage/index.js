@@ -10,11 +10,18 @@ import '../../styles/LoginPage.css';
 import { Grid } from 'semantic-ui-react'
 
 
-const LoginPage = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
+const LoginPage = ({
+  setActiveRole, 
+  setUserId, 
+  base_url, 
+  setActiveItem,
+  setSearchedText
+}) => {
   
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    setSearchedText('')
   }, [])
 
   return (

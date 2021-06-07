@@ -9,10 +9,11 @@ import laurine from "../..//assets/image/Laurine-ock.png";
 import '../../styles/Accueil.css';
 
 
-const Accueil = () => {
+const Accueil = ({setSearchedText}) => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    setSearchedText('')
   }, [])
   
 

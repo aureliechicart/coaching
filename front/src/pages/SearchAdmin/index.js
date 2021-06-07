@@ -12,12 +12,14 @@ const SearchAdmin = ({
         searchedStudents, 
         getSpeName, 
         searchedText, 
-        base_url, 
+        base_url,
+        setSearchedText 
       }) => {
 
     
   useEffect(() => {
     window.scrollTo(0, 0)
+    setSearchedText('')
   }, [])
   
  

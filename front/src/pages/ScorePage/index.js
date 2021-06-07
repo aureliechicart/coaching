@@ -16,7 +16,8 @@ const ScorePage = ({
   setStudent,
   base_url,
   studentScore,
-  setStudentScore
+  setStudentScore,
+  setSearchedText
 }) => {
 
   
@@ -47,6 +48,7 @@ const ScorePage = ({
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    setSearchedText('')
   }, [])
 
   return(

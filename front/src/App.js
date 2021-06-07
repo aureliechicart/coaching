@@ -200,6 +200,7 @@ const App = ({base_url}) => {
             setUserId={setUserId}
             base_url={base_url}
             setActiveItem={setActiveItem}
+            setSearchedText={setSearchedText}
             />
         </Route>
 
@@ -210,6 +211,7 @@ const App = ({base_url}) => {
             setUserId={setUserId}
             base_url={base_url}
             setActiveItem={setActiveItem}
+            setSearchedText={setSearchedText}
             />
         </Route>
 
@@ -232,9 +234,12 @@ const App = ({base_url}) => {
             setActiveRole={setActiveRole}
             setUserId={setUserId}
             base_url={base_url}
+
           />
           <Header titre={titre.studentAccueil.description} />
-          <Accueil />
+          <Accueil
+            setSearchedText={setSearchedText}
+          />
           <Footer />
         </Route>
 
@@ -259,7 +264,7 @@ const App = ({base_url}) => {
             base_url={base_url}
           />
           <Header titre={titre.adminAccueil.description} />
-          <AccueilAdmin heros={heros}/>
+          <AccueilAdmin heros={heros} setSearchedText={setSearchedText}/>
           <Footer />
         </Route>
 
@@ -291,6 +296,7 @@ const App = ({base_url}) => {
             userInteraction={userInteraction}
             base_url={base_url}
             userId={userId}
+            setSearchedText={setSearchedText}
           />  
           <Footer />
         </Route> 
@@ -326,6 +332,7 @@ const App = ({base_url}) => {
             userInteraction={userInteraction}
             setUserInteraction={setUserInteraction}
             userId={userId}
+            setSearchedText={setSearchedText}
             /> 
             <Footer />
         </Route>
@@ -353,6 +360,7 @@ const App = ({base_url}) => {
           <Header titre={titre.addAdmin.description} />
           <AddAdmin
             base_url={base_url}
+            setSearchedText={setSearchedText}
           />
           <Footer />
         </Route>
@@ -383,6 +391,7 @@ const App = ({base_url}) => {
             refresh={refresh} 
             setRefresh={setRefresh}
             base_url={base_url}
+            setSearchedText={setSearchedText}
           />
           <Footer />
         </Route>
@@ -471,6 +480,7 @@ const App = ({base_url}) => {
             base_url={base_url}
             studentScore={studentScore}
             setStudentScore={setStudentScore}
+            setSearchedText={setSearchedText}
           />
           <Footer />
         </Route>

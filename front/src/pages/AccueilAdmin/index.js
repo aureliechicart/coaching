@@ -8,10 +8,11 @@ import '../../styles/accueilAdmin.css';
 import { Card, Image } from 'semantic-ui-react'
 
 
-const AccueilAdmin = ({heros}) => {
+const AccueilAdmin = ({heros, setSearchedText}) => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    setSearchedText('')
   }, [])
 
   return (
