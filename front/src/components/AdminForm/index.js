@@ -67,7 +67,7 @@ import axios from 'axios';
           <Form.Input
             label='Email'
             type="text"
-            placeholder='mail du nouvel admin'
+            placeholder='michel.nouveladmin@oclock.io'
             value={email}
             onChange={e => setEmailAdmin(e.target.value)}
           />

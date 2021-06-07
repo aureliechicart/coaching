@@ -15,7 +15,8 @@ const ThemePage = ({
   setTheme,
   userInteraction,
   setUserInteraction,
-  userId
+  userId,
+  setSearchedText
 }) => {
   
   const[themeScore,setThemeScore] = useState(0);
@@ -70,6 +71,7 @@ const ThemePage = ({
   useEffect(() => {
     getSelectedTheme();
     window.scrollTo(0, 0)
+    setSearchedText('');
   }, [])
 
 

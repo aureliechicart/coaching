@@ -41,7 +41,7 @@ const ParcoursCoaching = ({
 
   useEffect(()=> {
     computeGeneralScore();
-  },[userInteraction]);
+  });
 
 
   useEffect(() => {

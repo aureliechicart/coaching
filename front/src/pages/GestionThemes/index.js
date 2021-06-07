@@ -8,11 +8,18 @@ import { Card } from 'semantic-ui-react';
 
 
 
-const GestionThemes = ({themes, setRefresh, refresh, base_url}) => {
+const GestionThemes = ({
+  themes, 
+  setRefresh, 
+  refresh, 
+  base_url,
+  setSearchedText
+}) => {
   const [iconPlus,setIconPlus] = useState('plus square');
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    setSearchedText('')
   }, [])
 
   return (
