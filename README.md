@@ -33,7 +33,7 @@ accéder aux contenu ci-dessous.
 * Une __page d'accueil__ présentant l'équipe qui a développé l'application.
 * Une __barre de recherche__ pour rechercher un étudiant par le biais de son nom, prénom, promotion, spécialité et ainsi voir sa progression.
 * Une __page de gestion__ pour ajouter, modifier et supprimer des thèmes, missions et astuces.
-* Une __page d'ajout de nouveaux coach__ pour ... ajouter des nouveaux coachs
+* Une __page d'ajout de nouveaux coachs__ pour ... ajouter des nouveaux coachs
 
 ### Précision 
 
