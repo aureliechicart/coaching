@@ -45,6 +45,10 @@ const ScorePage = ({
     
   },[student])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return(
     <div className='score-student'>
       <Header className='score-student-title' as='h1' textAlign='center'> {student.firstname} {student.lastname} </Header>
