@@ -107,6 +107,7 @@ const MenuHeader = ({
         console.log('On a cliqué', event),
         setActiveRole(''),
         setUserId(0),
+        localStorage.clear(),
         history.push('/login')
       )
   };

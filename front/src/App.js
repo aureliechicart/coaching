@@ -38,10 +38,7 @@ import students from 'src/data/users.js';
 import ScorePage from 'src/pages/ScorePage';
 import heros from 'src/data/equipe.js';
 
-// A mettre dans le .env et utiliser process.env.base_url
 
-
-// console.log(navlinks);
 
 // == Composant
 const App = ({base_url}) => { 
