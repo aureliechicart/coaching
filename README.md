@@ -20,11 +20,11 @@ Dés l'arrivée de l'utilisateur sur le site (étudiant ou l'équipe coaching), 
 accéder aux contenu ci-dessous.
 #### Côté étudiant
 * Une __page d'accueil__ présentant l'application web et l'équipe d'Oclock post-formation.
-* Une __page checklist__ composée : 
+* Une __page Parcours Coaching__ donnant une vue d'ensemble des thèmes à explorer ainsi que l'état d'avancement de l'étudiant.
+* Une __page Thème__ composée : 
  
-  * Thèmes (cliquable) présentant :
-       * Missions (et des astuces) cochable
-  * L'avancement sera représenté par des bars de progression (globale et par thème).
+  * d'une descritption général du thème et sa barre de progression 
+  * des différentes missions (cochables) qui y sont rattachées (Chaque mission est accompagné d'astuces aidant à sa réalisation)
 
 * Une __barre de recherche__ pour rechercher des thèmes.
 
@@ -33,10 +33,11 @@ accéder aux contenu ci-dessous.
 * Une __page d'accueil__ présentant l'équipe qui a développé l'application.
 * Une __barre de recherche__ pour rechercher un étudiant par le biais de son nom, prénom, promotion, spécialité et ainsi voir sa progression.
 * Une __page de gestion__ pour ajouter, modifier et supprimer des thèmes, missions et astuces.
+* Une __page d'ajout de nouveaux coach__ pour ... ajouter des nouveaux coachs
 
 ### Précision 
 
-Notre projet utilise une __API externe de O'clock__ qui référencie tous les étudiants et professeurs de l'école (dont les membres de l'équipe post-formation).
+Notre projet utilise l'__API externe de O'clock__ qui référencie tous les étudiants et professeurs de l'école (dont les membres de l'équipe post-formation).
 ## Statut du projet :mega:
 
  La première version de l'application est __maintenant disponible__ à cette [adresse](https://coachingoap.herokuapp.com/).
