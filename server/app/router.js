@@ -128,7 +128,7 @@ router.get('/themes/:id(\\d+)/missions', missionController.getAllByThemeId);
  * @param {string} advice- the description
  * @returns {Object} 201 - Instance of the Mission class
  */
-router.post('/admin/themes/:theme_id(\\d+)/missions', validateBody(missionSchema.newMission), missionController.addMission);
+router.post('/admin/themes/:themeId(\\d+)/missions', validateBody(missionSchema.newMission), missionController.addMission);
 
 /**
  * Edits a specific mission
