@@ -29,7 +29,7 @@ const adminController = {
                 .then(json => emailUser = json);
 
             if (!emailUser.success) {
-                res.status(404).json("Mais t'es où, pas là ! Mais t'es pas là, mais t'es... Bref, tu connais la chanson, essaie de verifier l'orthographe du mail peut-être on ne sait jamais !");
+                res.status(404).json("User not found. Please check email spelling");
             } else {
                 //    we search the user in the O'Clock API to confirm this user has the teacher role
                 let apiUser;
@@ -43,11 +43,11 @@ const adminController = {
 
 
                 if (!apiUser.success) {
-                    res.status(404).json("Error cannot find user. Check avaible mail or password");
+                    res.status(404).json("User not found");
                 } else {
                     // if the user doesn't have the teacher role
                     if (!apiUser.data.is_teacher) {
-                        res.status(401).json(`Can't add student with admin status.`);
+                        res.status(401).json(`A user with the student role cannot be given an admin role`);
 
                     } else {
                         // the user has the teacher role: we check if they exist in our database yet
@@ -73,7 +73,7 @@ const adminController = {
                             await theInternalUser.save();
                             apiUser.oap_id = theInternalUser.id;
                             apiUser.oap_admin_status = theInternalUser.admin_status;
-                            apiUser.message = `Vous avez ajouté un nouvel admin ! Bienvenue au nouveau Jedi !`;
+                            apiUser.message = `Successfully added new admin`;
                         }
                         // Now the user has been created/updated with admin status, we return the full apiUser object
                         res.status(200).json(apiUser);
