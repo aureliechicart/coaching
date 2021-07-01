@@ -29,7 +29,7 @@ class ThemeNotAdded extends Error {
  * Extends from Error class with custom message: 'Theme was not updated'
  * @class
  */
-class ThemeNotUpdated extends Error { 
+class ThemeNotUpdated extends Error {
     message = 'Theme was not updated';
 };
 
@@ -37,7 +37,7 @@ class ThemeNotUpdated extends Error {
  * Extends from Error class with custom message: 'Theme was not deleted'
  * @class
  */
-class ThemeNotDeleted extends Error { 
+class ThemeNotDeleted extends Error {
     message = 'Theme was not deleted';
 };
 
@@ -45,7 +45,7 @@ class ThemeNotDeleted extends Error {
  * Extends from Error class with custom message: 'Theme or user are not in the database'
  * @class
  */
-class ThemeAndUserNotFound extends Error { 
+class ThemeAndUserNotFound extends Error {
     message = 'Theme or user are not in the database';
 };
 
@@ -91,7 +91,7 @@ class Theme {
      * 
      * @static
      * @async
-     * @function findOne
+     * @function findAll
      * @returns {Array<Theme>} - An array of Theme instances
      * @throws {Error} - a potential SQL error.
      */
@@ -124,7 +124,7 @@ class Theme {
         } else {
             throw new UnknownThemeError();
         };
-        
+
     };
 
 
@@ -138,68 +138,67 @@ class Theme {
       * @returns {number} - Number between zero and 100.
       * @throws {Error} - a potential SQL error.
       */
-    static async findTheScoreOfOneThemeOfOneUser(themeId, userId){
-        const {rows} = await db.query(`SELECT COUNT(mission.id) AS score
+    static async findTheScoreOfOneThemeOfOneUser(themeId, userId) {
+        const { rows } = await db.query(`SELECT COUNT(mission.id) AS score
         FROM theme
         JOIN mission
         ON mission.theme_id = theme.id
         JOIN interact
         ON interact.mission_id = mission.id
         WHERE interact.user_id=$1 AND theme_id=$2;`,
-        [userId,themeId]);
+            [userId, themeId]);
 
         if (rows[0]) {
             return rows[0];
-        } else{
+        } else {
             return new ThemeAndUserNotFound();
         };
     };
-/**
-      * Creates a new theme or updates the database if the record already exists
-      * 
-      * @async
-      * @function save
-      * @returns {<Theme>} - Instance of the Theme class.
-      * @throws {Error} - a potential SQL error.
-      */
-     async save() {
-        
-        const { rows } = await db.query('INSERT INTO "theme" (title, description, position) VALUES ($1, $2, $3) RETURNING id;', [
-            this.title,
-            this.description,
-            this.position
-        ]);
-           if (rows[0]) {
-              this.id = rows[0].id;
-           } else {
-               throw new ThemeNotAdded();
-           };
-   };
-     /**
-      * Updates a specific theme in the DB 
-      * 
-      * @async
-      * @function save
-      * @returns {<Theme>} - Instance of the Theme class.
-      * @throws {Error} - a potential SQL error.
-      */
-    async update() {
-  
+    /**
+          * Creates a new theme or updates the database if the record already exists
+          * 
+          * @async
+          * @function save
+          * @returns {<Theme>} - Instance of the Theme class.
+          * @throws {Error} - a potential SQL error.
+          */
+    async save() {
         if (this.id) {
-           const { rows }= await db.query(`
-           UPDATE theme 
-           SET title = $1, "description" = $2, position = $3, modified_at = now()
-           WHERE id = $4 RETURNING id;
-           `,
-            [this.title, this.description,this.position,  this.id]);
+            const { rows } = await db.query(`UPDATE "theme"
+                SET title = $1,
+                description = $2,
+                position = $3
+                WHERE id = $4 RETURNING id;`, [
+                this.title,
+                this.description,
+                this.position,
+                this.id
+            ]);
+
             if (rows[0]) {
-                return rows[0];
+                return new Theme(rows[0]);
             } else {
                 throw new ThemeNotUpdated();
             };
+
+        } else {
+
+            const { rows } = await db.query(`INSERT INTO "theme" (title, description, position)
+                VALUES ($1, $2, $3) RETURNING id;`, [
+                this.title,
+                this.description,
+                this.position
+            ]);
+
+            if (rows[0]) {
+                this.id = rows[0].id;
+                return new Theme(rows[0]);
+            } else {
+                throw new ThemeNotAdded();
+            }
         };
     };
-    
+
     /**
       * Deletes a theme
       * 
@@ -208,9 +207,10 @@ class Theme {
       * @returns {<Theme>} - Instance of the Theme class.
       * @throws {Error} - a potential SQL error.
       */
-    async delete () {
-        const { rows } = await db.query(`DELETE FROM theme WHERE id=$1 RETURNING id;`, [this.id]);
-        
+    async delete() {
+        const { rows } = await db.query(`DELETE FROM "theme"
+        WHERE id = $1 RETURNING id;`, [this.id]);
+
         if (rows[0]) {
             return rows[0];
         } else {

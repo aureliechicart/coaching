@@ -47,7 +47,6 @@ const themeController = {
             const { themeId } = req.params;
             // we check if theme exists in the database
             const theme = await Theme.findOne(themeId);
-
             // if theme exists, we get the body parameters
             const { title, description } = req.body;
 
@@ -60,7 +59,7 @@ const themeController = {
             }
 
             // we save the changes in database
-            await theme.update();
+            await theme.save();
             res.status(200).json(theme);
 
         } catch (err) {
