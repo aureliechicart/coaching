@@ -159,8 +159,8 @@ const interactController = {
 
             // We check if the mission id and the user id exist
             // If not, it will generate an error that will be intercepted in the catch
-            const checkMissionID = await Mission.findOne(mission_id);
-            const checkUserID = await User.findOne(user_id);
+            await Mission.findOne(mission_id);
+            await User.findOne(user_id);
 
             // if there are no errors, we can save this new record in the database
             const newInteract = new Interact({ mission_id, user_id });
