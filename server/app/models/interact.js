@@ -120,15 +120,15 @@ class Interact {
      * @param {number} userId - The id of a unique user
      * @returns {number} - A number between zero and 100
      */
-    static async findGlobalScoreOfOneUser(userId){
+    static async findGlobalScoreOfOneUser(userId) {
         const { rows } = await db.query(`SELECT COUNT(mission_id) AS global_score
         FROM interact
-        WHERE user_id= $1;`, 
-        [userId]);
+        WHERE user_id= $1;`,
+            [userId]);
 
-        if(rows[0]){
+        if (rows[0]) {
             return rows[0];
-        }else{
+        } else {
             throw new NoInteractError();
         };
 
@@ -143,7 +143,7 @@ class Interact {
       * @throws {Error} - a potential SQL error.
     */
     async save() {
-        const { rows } = await db.query(`INSERT INTO interact(mission_id, user_id) 
+        const { rows } = await db.query(`INSERT INTO "interact" (mission_id, user_id) 
             VALUES($1, $2) RETURNING (mission_id, user_id);`, [
             this.mission_id,
             this.user_id
@@ -151,6 +151,7 @@ class Interact {
 
         if (rows[0]) {
             this.id = `(${this.mission_id}, ${this.user_id})`;
+            return new Interact(rows[0]);
         } else {
             throw new InteractNotAddedError();
         };
@@ -166,7 +167,12 @@ class Interact {
       * @throws {Error} - a potential SQL error.
       */
     async delete() {
-        const { rows } = await db.query(`DELETE FROM interact WHERE mission_id=$1 AND user_id=$2 RETURNING (mission_id, user_id);`, [this.mission_id, this.user_id]);
+        const { rows } = await db.query(`DELETE FROM "interact"
+        WHERE mission_id = $1 AND user_id = $2
+        RETURNING (mission_id, user_id);`, [
+            this.mission_id,
+            this.user_id
+        ]);
 
         if (rows[0]) {
             return rows[0];
