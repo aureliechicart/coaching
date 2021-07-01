@@ -57,13 +57,13 @@ Content-Type: application/json
 
 {    
  
-    "title" : "Javascriptt c'est la vie vida loca !"
+    "title" : "Javascript c'est la vida loca !"
 
 }
 ###
 
 # Suppression du theme 3
-DELETE http://localhost:3000/v1/api/admin/themes/8
+DELETE http://localhost:3000/v1/api/admin/themes/34
 Content-Type: application/json
 ###
 
