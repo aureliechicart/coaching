@@ -95,8 +95,8 @@ const interactController = {
             const { themeId, userId } = req.params;
 
             // we check the theme id and user id 
-            const checkThemeID = await Theme.findOne(themeId);
-            const checkUserID = await User.findOne(userId);
+            await Theme.findOne(themeId);
+            await User.findOne(userId);
 
             // we obtain the number of completed missions for this theme and this user
             const scoreByTheme = await Theme.findTheScoreOfOneThemeOfOneUser(themeId, userId);
@@ -110,7 +110,7 @@ const interactController = {
             res.status(200).json({ bytheme_ratio: `${scoreRatio}` });
 
         } catch (err) {
-            // There is no id user or theme id value stored in the database for this user id and this theme id
+            // There is no such user or theme stored in the database
             // In the model, there is an error with a custom message
             res.status(404).json(err.message);
         };
@@ -127,7 +127,7 @@ const interactController = {
             const { userId } = req.params;
 
             // we check if such id exists in the database
-            const checkUserID = await User.findOne(userId);
+            await User.findOne(userId);
 
 
             // we get the total number of completed missions for this user 
@@ -141,7 +141,7 @@ const interactController = {
             res.status(200).json({ global_ratio: `${globalScoreRatio}` });
 
         } catch (err) {
-            // There is no score for this user id 
+            // There is no such user 
             // In the model, there is an error with a custom message
             res.status(404).json(err.message);
         };

@@ -47,13 +47,13 @@ Content-Type: application/json
 ###
 
 
-# Insérer une case cochée en bdd pour la mission 12 et l'utilisateur 3 déjà dans la BDD
+# Insérer une case cochée en bdd pour la mission 1 et l'utilisateur 15
 POST http://localhost:3000/v1/api/student/interact/
 Content-Type: application/json
 
 {
-    "mission_id": 14,
-    "user_id": 3
+    "mission_id": 1,
+    "user_id": 15
 }
 ###
 
