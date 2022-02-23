@@ -113,12 +113,12 @@ npm run dev
 
 ## Contributeurs <img src="https://emoji.slack-edge.com/T01F46EL0U8/quill1/0755fe36a5bb4bbf.png" alt="quill" width="30"/>
 
-Product Owner: [Lucas Chouillou (alias xuxu278)](https://github.com/lucasquill)
+Product Owner et dev front : [Lucas Chouillou (alias xuxu278)](https://github.com/lucasquill)
 
-Scrum master: [Aurélie Chicart](https://github.com/aureliechicart)
+Scrum master et dev back : [Aurélie Chicart](https://github.com/aureliechicart)
 
-Lead dev Front: [Madine BA](https://github.com/mabakayaro)
+Lead dev Front : [Madine BA](https://github.com/mabakayaro)
 
-Lead dev Back: [Julie Anani](https://github.com/Julie-ANANI)
+Lead dev Back : [Julie Anani](https://github.com/Julie-ANANI)
 
-Git Master: [Mahanora Tetuanui](https://github.com/MahanoraTetuanui)
+Git Master et dev back : [Mahanora Tetuanui](https://github.com/MahanoraTetuanui)
